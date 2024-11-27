@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Scroll Opacity</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 200vh; /* To ensure scrollable height */
+      background: #f9f9f9;
+    }
+
+    .image-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      opacity: 0.1; /* Start with low opacity */
+      transition: opacity 0.1s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img id="scrollImage" src="https://via.placeholder.com/800x600" alt="Example Image">
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY; // Get current scroll position
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight; // Scrollable height
+      const scrollPercent = scrollTop / docHeight; // Scroll percentage
+      const newOpacity = Math.min(1, scrollPercent + 0.1); // Limit opacity to 1
+      const image = document.getElementById('scrollImage');
+      image.style.opacity = newOpacity;
+    });
+  </script>
+</body>
+</html>
