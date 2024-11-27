@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Scroll Opacity</title>
+  <title>Scroll-Based Image Opacity</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      height: 200vh; /* To ensure scrollable height */
-      background: #f9f9f9;
+      height: 200vh; /* To ensure there's enough content to scroll */
+      background: #f0f0f0;
     }
 
     .image-container {
@@ -17,27 +17,28 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      text-align: center;
     }
 
     img {
       max-width: 100%;
       height: auto;
-      opacity: 0.1; /* Start with low opacity */
-      transition: opacity 0.1s ease-out;
+      opacity: 0.1; /* Initial low opacity */
+      transition: opacity 0.1s ease-out; /* Smooth transition */
     }
   </style>
 </head>
 <body>
   <div class="image-container">
-    <img id="scrollImage" src="https://via.placeholder.com/800x600" alt="Example Image">
+    <img id="scrollImage" src="https://via.placeholder.com/800x600" alt="Placeholder Image">
   </div>
 
   <script>
     window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY; // Get current scroll position
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight; // Scrollable height
-      const scrollPercent = scrollTop / docHeight; // Scroll percentage
-      const newOpacity = Math.min(1, scrollPercent + 0.1); // Limit opacity to 1
+      const scrollTop = window.scrollY; // Get the vertical scroll position
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight; // Total scrollable height
+      const scrollPercent = scrollTop / docHeight; // Calculate scroll percentage
+      const newOpacity = Math.min(1, scrollPercent + 0.1); // Ensure opacity stays between 0.1 and 1
       const image = document.getElementById('scrollImage');
       image.style.opacity = newOpacity;
     });
