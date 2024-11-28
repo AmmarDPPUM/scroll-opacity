@@ -54,7 +54,8 @@
         // Enable scrolling only if opacity hits bounds
         if (opacity === 1 || opacity === 0) {
           canScroll = true;
-          document.body.style.overflow = 'auto'; // Enable normal scrolling
+          //document.body.style.overflow = 'auto'; // Enable normal scrolling
+          parent.scrollBy(0, delta); // Pass scroll behavior to parent (Google Sites page)
         }
 
         // Prevent default scrolling behavior
@@ -63,7 +64,7 @@
         // Disable scrolling again when the user scrolls in the opposite direction
         if ((delta < 0 && opacity === 1) || (delta > 0 && opacity === 0)) {
           canScroll = false;
-          document.body.style.overflow = 'hidden'; // Stop default scrolling
+          //document.body.style.overflow = 'hidden'; // Stop default scrolling
         }
       }
     });
